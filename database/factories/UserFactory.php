@@ -2,9 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Enum\Gender;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Enum\UserType;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -24,7 +26,13 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'first_name' =>$this-> faker->word,
+            'last_name' =>$this->faker->word,
+            'address' => $this->faker->address,
+            'phone' => $this->faker->phoneNumber,
+            'gender' => $this->faker->randomElement([Gender::MALE, Gender::FEMALE]),
+            'type' => $this->faker->randomElement([UserType::ADMIN, UserType::CHILD, UserType::TEACHER,UserType::FOREBEAR]),
+            'image' => $this->faker->imageUrl(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
