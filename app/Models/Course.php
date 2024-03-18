@@ -2,23 +2,24 @@
 
 namespace App\Models;
 
-use App\Enum\EducationStage;
+use App\Models\Teacher;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Child extends Model
+class Course extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
-        'user_id',
-        'age',
-        'education_stage'
+        'teacher_id',
+        'name',
+        'type',
+        'description'
     ];
 
-    public function user()
+    public function teacher()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Teacher::class);
     }
 
     public function reviews()

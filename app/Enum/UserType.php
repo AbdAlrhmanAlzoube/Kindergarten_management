@@ -1,17 +1,13 @@
-<?php
+<?php 
 
-namespace App\Enum;
+namespace App\Enum; 
 
-enum UserType :string
 
+
+enum UserType:string
 {
-    case ADMIN='admin';
-
-    case CHILD='child';
-
-    case TEACHER='teacher';
-
-    case FOREBEAR ='Forebear';
-    
-
+    case ADMIN = 'admin';
+    case CHILD = 'child';
+    case TEACHER = 'teacher';
+    case FOREBEAR = 'forebear';
 }

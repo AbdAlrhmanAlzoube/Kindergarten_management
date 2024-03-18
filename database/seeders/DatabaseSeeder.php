@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Advertisement;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,7 +17,10 @@ class DatabaseSeeder extends Seeder
         UsersTableSeeder::class,
         TeachersTableSeeder::class,
         ForebearsTableSeeder::class,
-        ChildTableSeeder::class
+        ChildTableSeeder::class,
+        CourseSeeder::class,
+        ReviewSeeder::class,
+        AdvertisementSeeder::class
     ]);
     }
 }
