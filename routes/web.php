@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('Admin.users.index');
+
+
+// });
+Route::resource('users', UserController::class)
+     
+;
+
+
+Route::resource('users', UserController::class)->except([
+    'update'    
+]);
+
