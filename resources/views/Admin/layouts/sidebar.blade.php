@@ -17,10 +17,7 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
-        
-      
+       
     
   
    
@@ -48,21 +45,25 @@
               </a>
           </li>
           
-            <li class="nav-item">
-              <a href="pages/examples/e-commerce.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>E-commerce</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/projects.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Projects</p>
-              </a>
-            </li>
-          
-       
       </ul>
+
+
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <p>
+              Child
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('children.index') }}">List Child</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      
     </nav>
     <!-- /.sidebar-menu -->
   </div>
