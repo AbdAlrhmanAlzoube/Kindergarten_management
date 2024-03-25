@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,17 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('Admin.users.index');
+Route::get('/', [UserController::class, 'index'])->name('users.index');
 
 
-// });
-Route::resource('users', UserController::class)
-     
-;
-
-
-Route::resource('users', UserController::class)->except([
-    'update'    
-]);
-
+Route::resource('users', UserController::class);
+Route::get('/users/index', [UserController::class, 'index']);

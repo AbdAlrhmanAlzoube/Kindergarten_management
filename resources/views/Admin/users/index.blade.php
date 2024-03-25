@@ -28,7 +28,7 @@
               <th>Type</th>
               <th>Gender</th>
               <th>Image</th>
-              <th colspan="3" class="text-center">Options</th>
+              <th colspan="2" class="text-center">Options</th>
             </tr>
           </thead>
           <tbody>
@@ -50,13 +50,7 @@
                     <input type="submit" class="btn btn-danger btn-rounded btn-fw" value="Delete">
                   </form>
                 </td>
-                <td>
-                  <form action="{{ route('users.edit', $user->id) }}" method="GET">
-                    @csrf
-                    
-                    <input type="submit" class="btn btn-success btn-rounded btn-fw" value="Edit">
-                  </form>
-                </td>
+               
                 <td>
                   <form action="{{ route('users.show', $user->id) }}" method="GET">
                     @csrf

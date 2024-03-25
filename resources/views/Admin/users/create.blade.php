@@ -10,6 +10,7 @@
                 <div class="card-body">
                     <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="redirect_to_index" value="true">
                         <div class="form-group">
                             <label for="first_name">First Name</label>
                             <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter first name">
@@ -21,6 +22,10 @@
                         <div class="form-group">
                             <label for="address">Address</label>
                             <input type="text" class="form-control" id="address" name="address" placeholder="Enter address">
+                        </div>
+                        <div class="form-group">
+                            <label for="type">type</label>
+                            <input type="text" class="form-control" id="type" name="type" placeholder="Enter ype">
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
@@ -45,6 +50,11 @@
                             <label for="image">Image</label>
                             <input type="file" class="form-control" id="image" name="image">
                         </div>
+                        @error('first_name')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>

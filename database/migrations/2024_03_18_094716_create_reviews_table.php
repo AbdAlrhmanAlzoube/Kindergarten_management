@@ -16,9 +16,9 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Child::class);
-            $table->foreignIdFor(Teacher::class);
-            $table->foreignIdFor(Course::class);
+            $table->foreignIdFor(Child::class)->constrained();
+            $table->foreignIdFor(Teacher::class)->constrained();
+            $table->foreignIdFor(Course::class)->constrained();
             $table->String('level');
             $table->timestamps();
         });
