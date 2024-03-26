@@ -12,14 +12,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('forebears', function (Blueprint $table) {
-            $table->id();
-            // $table->foreignIdFor(User::class)->constrained()->on('cascade');
-            $table->integer('age');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('forebears')) {
+            Schema::create('forebears', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->constrained()->onDelete('cascade');
+                $table->integer('age');
+                $table->timestamps();
+            });
+        }
     }
-
     /**
      * Reverse the migrations.
      */

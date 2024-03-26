@@ -11,11 +11,6 @@ use App\Http\Requests\UserStoreRequest;
 class ChildController extends Controller
 {
    
-    // public function index()
-    // {
-    //     $children = Child::all();   
-    //     return view('Admin.children.index', compact( 'children'));
-    // }
     public function index()
     {
         $children = Child::all();

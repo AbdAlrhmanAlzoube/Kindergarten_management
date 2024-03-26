@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     public function forebears()
     {
-        return $this->hasMany(Forebear::class);
+        return $this->hasOne(Forebear::class);
     }
 
     public function teachers()

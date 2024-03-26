@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
         //    $table->foreignIdFor(Teacher::class)->constrained()->on('cascade');
         //     $table->string('name');
-            $table->enum('type',['english','game','mental_cliculation']);
+            $table->enum('type',['english','game','mental_calculation']);
             $table->text('description');
             $table->timestamps();
         });

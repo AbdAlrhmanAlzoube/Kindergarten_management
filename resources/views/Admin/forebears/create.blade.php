@@ -5,24 +5,24 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Add New Child</div>
+                <div class="card-header">Add New Forebear</div>
 
                 <div class="card-body">
-                    <form action="{{ route('children.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('forebears.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         
                         <div class="form-group">
-                            <label for="first_name"> First Name</label>
-                            <input type="text" class="form-control @error('first_name') is-invalid @enderror" id="first_name" name="first_name" placeholder="Enter child's first name">
+                            <label for="first_name">First Name</label>
+                            <input type="text" class="form-control @error('first_name') is-invalid @enderror" id="first_name" name="first_name" placeholder="Enter forebear's first name">
                             @error('first_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -30,8 +30,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="last_name"> Last Name</label>
-                            <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name" name="last_name" placeholder="Enter child's last name">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name" name="last_name" placeholder="Enter forebear's last name">
                             @error('last_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -105,19 +105,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="education_stage">Education Stage</label>
-                            <select class="form-control @error('education_stage') is-invalid @enderror" id="education_stage" name="education_stage">
-                                <option value="{{ \App\Enum\EducationStage::KG1 }}">KG1</option>
-                                <option value="{{ \App\Enum\EducationStage::KG2 }}">KG2</option>
-                                <option value="{{ \App\Enum\EducationStage::KG3 }}">KG3</option>
-                            </select>
-                            @error('education_stage')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                      
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
