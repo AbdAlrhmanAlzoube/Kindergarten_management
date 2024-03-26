@@ -12,7 +12,7 @@
                         <tbody>
                             <tr>
                                 <th scope="row">First Name</th>
-                                <td>{{ $child->user_first_name }}</td>
+                                <td>{{ $child->user->first_name}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Age</th>

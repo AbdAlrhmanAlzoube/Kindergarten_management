@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Teacher::class)->constrained();
-            $table->string('name');
+        //    $table->foreignIdFor(Teacher::class)->constrained()->on('cascade');
+        //     $table->string('name');
             $table->enum('type',['english','game','mental_cliculation']);
             $table->text('description');
             $table->timestamps();

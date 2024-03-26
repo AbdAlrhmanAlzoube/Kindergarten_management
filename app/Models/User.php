@@ -23,7 +23,6 @@ class User extends Authenticatable
         'address',
         'phone',
         'image',
-        'type',
         'gender',
         'email',
         'email_verified_at',
@@ -32,7 +31,7 @@ class User extends Authenticatable
 
     public function children()
     {
-        return $this->hasMany(Child::class);
+        return $this->hasOne(Child::class);
     }
 
     public function forebears()

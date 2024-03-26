@@ -11,9 +11,9 @@ class Child extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_first_name',
         'age',
-        'education_stage'
+        'education_stage',
+        'user_id',
     ];
 
     public function user()

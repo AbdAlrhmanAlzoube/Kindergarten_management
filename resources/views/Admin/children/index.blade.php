@@ -20,14 +20,14 @@
             @forelse ($children as $child)
               <tr>
                 <td>{{ $child->id }}</td>
-                <td>{{ $child->user_first_name }}</td>
+                <td>{{ $child->user->first_name }}</td>
                 <td>{{ $child->age }}</td>
                 <td>{{ $child->education_stage }}</td>
                 <td>
-                  <a href="{{ route('users.children.show', [$user->id, $child->id]) }}" class="btn btn-secondary btn-rounded btn-fw">Show</a>
+                  <a href="{{ route('children.show', [ $child->id]) }}" class="btn btn-secondary btn-rounded btn-fw">Show</a>
                 </td>
                 <td>
-                  <form action="{{ route('users.children.destroy', [$user->id, $child->id]) }}" method="POST">
+                  <form action="{{ route('children.destroy', [ $child->id]) }}" method="POST">
                     @csrf
                     @method('delete')
                     <button type="submit" class="btn btn-danger btn-rounded btn-fw">Delete</button>

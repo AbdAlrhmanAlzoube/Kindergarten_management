@@ -58,7 +58,10 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('children.index') }}">List Child</a>
+              <a href="{{ route('children.index') }}" class="nav-link">List Child</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('children.create') }}" class="nav-link">Add Child</a>
             </li>
           </ul>
         </li>

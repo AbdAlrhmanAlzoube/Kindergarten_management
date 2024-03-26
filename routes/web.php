@@ -20,7 +20,7 @@ Route::get('/', [UserController::class, 'index'])->name('users.index');
 
 
 Route::resource('users', UserController::class);
+// Route::resource('child', ChildController::class);
+Route::resource('children', ChildController::class);
 
-Route::prefix('users')->group(function () {
-    Route::resource('{user}/children', ChildController::class)->only(['index', 'create', 'store', 'show', 'destroy']);
-});
+

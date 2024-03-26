@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('forebears', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
+            // $table->foreignIdFor(User::class)->constrained()->on('cascade');
             $table->integer('age');
             $table->timestamps();
         });
