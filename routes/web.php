@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChildController;
 use App\Http\Controllers\ForebearsController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +22,9 @@ Route::get('/', [UserController::class, 'index'])->name('users.index');
 
 
 Route::resource('users', UserController::class);
-// Route::resource('child', ChildController::class);
 Route::resource('children', ChildController::class);
 Route::resource('forebears', ForebearsController::class);
+Route::resource('teachers', TeacherController::class);
+
 
 
