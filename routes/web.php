@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\ChildController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ForebearsController;
@@ -29,6 +30,7 @@ Route::resource('forebears', ForebearsController::class);
 Route::resource('teachers', TeacherController::class);
 Route::resource('courses', CourseController::class);
 Route::resource('reviews', ReviewController::class);
+Route::resource('advertisements', AdvertisementController::class);
 
 
 

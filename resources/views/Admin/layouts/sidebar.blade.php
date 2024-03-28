@@ -107,7 +107,25 @@
   
     </ul>
 
-
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <li class="nav-item">
+          <a href="#" class="nav-link">
+              <p>
+                  Advertisements
+                  <i class="fas fa-angle-left right"></i>
+              </p>
+          </a>
+          <ul class="nav nav-treeview">
+              <li class="nav-item">
+                  <a href="{{ route('advertisements.index') }}" class="nav-link">List Advertisements</a>
+              </li>
+              <li class="nav-item">
+                  <a href="{{ route('advertisements.create') }}" class="nav-link">Add Advertisement</a>
+              </li>
+          </ul>
+      </li>
+  </ul>
+  
 
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">

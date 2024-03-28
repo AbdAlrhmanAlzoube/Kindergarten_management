@@ -22,7 +22,7 @@ class CourseUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'teacher_id' => 'exists:teachers,id',
+          'teacher_id' => 'exists:teachers,id',
 
             'type' => 'string|in:english,game,mental_calculation',
             'description' => 'string',

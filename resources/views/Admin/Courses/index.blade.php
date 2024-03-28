@@ -38,3 +38,12 @@
             @empty
               <tr>
                 <td colspan="5">No Courses found</td>
+              </tr>
+            @endforelse
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

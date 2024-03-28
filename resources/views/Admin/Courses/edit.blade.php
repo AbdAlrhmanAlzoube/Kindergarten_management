@@ -26,10 +26,11 @@
                                 <label for="teacher_id">Teacher:</label>
                                 <select id="teacher_id" name="teacher_id" class="form-control" >
                                     @foreach($teachers as $teacher)
-                                        <option value="{{ $teacher->id }}" {{ $teacher->id == $course->teacher_id ? 'selected' : '' }}>
-                                            {{ $teacher->user->first_name . ' ' . $teacher->user->last_name }}
-                                        </option>
+                                    <option value="{{ $teacher->id }}" {{ $teacher->id == $course->teacher_id ? 'selected' : '' }}>
+                                        {{ $teacher->user->first_name . ' ' . $teacher->user->last_name }}
+                                    </option>
                                     @endforeach
+                                    
                                 </select>
                             </div>
 

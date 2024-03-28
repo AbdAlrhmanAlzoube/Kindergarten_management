@@ -23,9 +23,9 @@
                                 <label for="teacher_id">Teacher:</label>
                                 <select id="teacher_id" name="teacher_id" class="form-control" required>
                                     @foreach($teachers as $teacher)
-                                        <option value="{{ $teacher->id }}">{{ $teacher->}}</option>
-
+                                    <option value="{{ $teacher->id }}">{{ $teacher->user->first_name . ' ' . $teacher->user->last_name }}</option>
                                     @endforeach
+                                    
                                 </select>
                             </div>
                             <div class="form-group">
