@@ -29,7 +29,6 @@ class UserStoreRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'max:255'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            // 'type' => ['required', 'string', 'max:255'],
             'gender' => ['nullable', 'string', 'max:255'],
         ];
     }

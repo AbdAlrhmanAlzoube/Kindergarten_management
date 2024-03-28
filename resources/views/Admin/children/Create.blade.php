@@ -98,13 +98,14 @@
                         </div>
                         <div class="form-group">
                             <label for="age">Age</label>
-                            <input type="number" class="form-control @error('age') is-invalid @enderror" id="age" name="age" placeholder="Enter age">
+                            <input type="number" class="form-control @error('age') is-invalid @enderror" id="age" name="age" placeholder="Enter age" min="3" max="5">
                             @error('age')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
+                        
                         <div class="form-group">
                             <label for="education_stage">Education Stage</label>
                             <select class="form-control @error('education_stage') is-invalid @enderror" id="education_stage" name="education_stage">

@@ -22,7 +22,7 @@ class ChildStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_first_name' => ['required', 'string', 'max:255'],
+         //   'user_first_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
@@ -31,7 +31,7 @@ class ChildStoreRequest extends FormRequest
             'password' => ['required', 'string', 'min:8', 'max:255'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'gender' => ['nullable', 'string', 'max:255'],
-            'age' => ['required', 'integer'],
+            'age' => ['required', 'integer','max:5'],
             'education_stage' => ['required', 'string', 'max:255'],
         ];
     }

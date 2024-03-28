@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,7 +13,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        
+        Schema::create('teachers', function (Blueprint $table)
+         {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->integer('experience_years');

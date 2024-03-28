@@ -1,4 +1,3 @@
-
 @extends('Admin.admin_dashboard')
 
 @section('content')

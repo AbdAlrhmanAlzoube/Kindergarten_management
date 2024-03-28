@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="age">Age</label>
-                                <input type="number" class="form-control" id="age" name="age" placeholder="Enter age">
+                                <input type="number" class="form-control" id="age" name="age" placeholder="Enter age" min="21" max="35">
                             </div>
 
                             <button type="submit" class="btn btn-primary">Submit</button>
