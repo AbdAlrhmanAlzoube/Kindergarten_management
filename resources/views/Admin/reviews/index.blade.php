@@ -14,16 +14,25 @@
                                 <th>Teacher</th>
                                 <th>Course</th>
                                 <th>Level</th>
+                                <th>Action</th> <!-- New Column for Actions -->
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($reviews as $review)
                                 <tr>
                                     <td>{{ $review->id }}</td>
-                                    <td>{{ $review->child->name }}</td>
-                                    <td>{{ $review->teacher->name }}</td>
-                                    <td>{{ $review->course->name }}</td>
+                                    <td>{{ $review->child->user->first_name }}</td>
+                                    <td>{{ $review->teacher->user->first_name }}</td>
+                                    <td>{{$review->course->type }}</td>
+
                                     <td>{{ $review->level }}</td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Review Actions">
+                                            <a href="{{ route('reviews.show', $review) }}" class="btn btn-info btn-sm">View</a>
+                                            <a href="{{ route('reviews.edit', $review) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            <!-- You can add more actions here -->
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

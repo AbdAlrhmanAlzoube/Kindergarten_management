@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Course;
 use App\Models\Teacher;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -29,3 +30,5 @@ return new class extends Migration
         Schema::dropIfExists('courses');
     }
 };
+
+

@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\ChildController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ForebearsController;
-use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;

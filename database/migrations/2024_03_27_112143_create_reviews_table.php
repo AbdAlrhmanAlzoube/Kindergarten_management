@@ -16,10 +16,12 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Child::class)->constrained()->onDelete('cascade');
-            $table->foreignIdFor(Teacher::class)->constrained()->onDelete('cascade');
-            //  $table->foreignIdFor(Course::class)->constrained()->onDelete('cascade');
-            $table->string('level');
+            $table->foreignIdFor(Child::class);
+            $table->foreignIdFor(Teacher::class);
+            $table->foreignIdFor(Course::class);
+            
+            $table->text('level');
+         
 
             $table->timestamps();
         });

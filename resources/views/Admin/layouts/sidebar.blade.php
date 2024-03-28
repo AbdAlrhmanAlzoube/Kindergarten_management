@@ -141,6 +141,12 @@
                 </li>
                 
             </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                  <a href="{{ route('reviews.create') }}" class="nav-link">Add Review</a>
+              </li>
+              
+          </ul>
         </li>  
     
   
