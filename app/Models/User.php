@@ -29,14 +29,15 @@ class User extends Authenticatable
         'password'
     ];
 
-    public function children()
+    
+    public function child()
     {
-        return $this->hasOne(Child::class);
+        return $this->hasOne(Child::class); // A user can have one child
     }
 
-    public function forebears()
+    public function forebear()
     {
-        return $this->hasOne(Forebear::class);
+        return $this->hasOne(Forebear::class); // A user can have one forebear
     }
 
     public function teachers()

@@ -13,9 +13,13 @@ class Forebear extends Model
         'user_id',
         'age'
     ];
-
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class); // A forebear belongs to a user
     }
+
+    public function children()
+    {
+        return $this->hasMany(Child::class); 
+}
 }

@@ -108,7 +108,7 @@
                         
                         <div class="form-group">
                             <label for="education_stage">Education Stage</label>
-                            <select class="form-control @error('education_stage') is-invalid @enderror" id="education_stage" name="education_stage">
+                            <select class="form-control @error('education_stage') is-invalid @enderror" id="education_stage" name="education_stage" >
                                 <option value="{{ \App\Enum\EducationStage::KG1 }}">KG1</option>
                                 <option value="{{ \App\Enum\EducationStage::KG2 }}">KG2</option>
                                 <option value="{{ \App\Enum\EducationStage::KG3 }}">KG3</option>

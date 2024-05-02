@@ -14,6 +14,7 @@ class Child extends Model
         'age',
         'education_stage',
         'user_id',
+        'forebear_id'
     ];
 
     public function user()
@@ -24,5 +25,10 @@ class Child extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function forebear()
+    {
+        return $this->belongsTo(Forebear::class);
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('teachers', function (Blueprint $table)
          {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->integer('experience_years');
             $table->string('course_name');
             $table->string('age');

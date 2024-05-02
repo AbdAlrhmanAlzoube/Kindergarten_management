@@ -20,6 +20,10 @@
                             <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter last name">
                         </div>
                         <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter last name">
+                        </div>
+                        <div class="form-group">
                             <label for="address">Address</label>
                             <input type="text" class="form-control" id="address" name="address" placeholder="Enter address">
                         </div>

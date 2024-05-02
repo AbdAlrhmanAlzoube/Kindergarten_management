@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Forebear\AddChildController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\ChildController;
@@ -33,4 +34,10 @@ Route::resource('reviews', ReviewController::class);
 Route::resource('advertisements', AdvertisementController::class);
 
 
+Route::get('/Forebear',function()
+{
+    return view('Dashboard.Forebear.dashboard');
+});
 
+
+Route::resource('forebear_child',AddChildController::class);

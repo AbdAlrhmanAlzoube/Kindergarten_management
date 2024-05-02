@@ -17,12 +17,7 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-       
-    
-  
-   
-    
-        
+      
         <li class="nav-item">
           <a href="#" class="nav-link">
           
@@ -61,7 +56,7 @@
               <a href="{{ route('children.index') }}" class="nav-link">List Child</a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('children.create') }}" class="nav-link">Add Child</a>
+              <a href="{{ route('children.create') }}" class="nav-link">Add child</a>
             </li>
           </ul>
         </li>
@@ -83,7 +78,7 @@
                 </li>
             </ul>
         </li>
-    </ul>
+     </ul>
 
 
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -181,7 +176,7 @@
   
     </ul>
  
-s
+
     </ul>
 
     </nav>

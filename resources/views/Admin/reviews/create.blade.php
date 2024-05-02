@@ -21,7 +21,7 @@
                     <select class="form-control" id="child_id" name="child_id">
                         <option value="">Select Child</option>
                         @foreach($children as $child)
-                            <option value="{{ $child->id }}">{{ $child->user->first_name }}</option>
+                            <option value="{{ $child->id }}">{{ $child->user->first_name }} {{ $child->user->last_name }}</option>
                         @endforeach
                     </select>
                     @error('child_id')
