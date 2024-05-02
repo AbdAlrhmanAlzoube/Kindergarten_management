@@ -6,6 +6,7 @@ use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\ChildController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ForebearsController;
+use App\Http\Controllers\Teacher\AddReviewController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,14 @@ Route::get('/Forebear',function()
 {
     return view('Dashboard.Forebear.dashboard');
 });
-
-
 Route::resource('forebear_child',AddChildController::class);
+
+
+Route::get('/teacher',function()
+{
+    return view('Dashboard.Teacher.dashboard');
+});
+
+Route::resource('teacher_review',AddReviewController::class);
+
+
