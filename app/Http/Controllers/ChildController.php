@@ -1,16 +1,16 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ChildStoreRequest;
 use App\Models\Child;
 use App\Models\User;
+use App\Models\Forebear;
 use Illuminate\Http\Request;
-use App\Http\Requests\UserStoreRequest;
 
 class ChildController extends Controller
 {
-   
     public function index()
     {
         $children = Child::all();
@@ -21,42 +21,69 @@ class ChildController extends Controller
     {
         return view('Admin.children.show', compact('user', 'child'));
     }
-    
 
-    
-    public function create(User $user)
+    public function create()
     {
-        return view('Admin.children.create', compact('user'));
+        $forebears = Forebear::all();
+        return view('Admin.children.create', compact('forebears'));
     }
 
- 
-    public function store( ChildStoreRequest $request)
+    public function store(ChildStoreRequest $request)
     {
         $validatedData = $request->validated();
-        // Upload image if provided
+
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images/users', 'public');
             $validatedData['image'] = $imagePath;
         }
-    
-        $user=User::create($validatedData);
-        $child =Child::create([
-          'user_id' => $user->id,
-          'age' => $validatedData['age'],
-          'education_stage' => $validatedData['education_stage'],
+
+        $user = User::create($validatedData);
+        $child = Child::create([
+            'user_id' => $user->id,
+            'forebear_id' => $validatedData['forebear_id'],
+            'age' => $validatedData['age'],
+            'education_stage' => $validatedData['education_stage'],
         ]);
+
         $children = Child::all();
-        return  view('Admin.children.index',compact('children'));
-        // redirect()->route('children.index')->with('success', 'Child created successfully')->with('children', $children);
+        return view('Admin.children.index', compact('children'));
+    }
+
+    public function edit(Child $child)
+    {
+        $forebears = Forebear::all();
+        return view('Admin.children.edit', compact('child', 'forebears'));
+    }
+    public function update(ChildStoreRequest $request, Child $child)
+    {
+        $validatedData = $request->validated();
+    
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images/users', 'public');
+            $validatedData['image'] = $imagePath;
+        } else {
+            $validatedData['image'] = $child->user->image;
+        }
+    
+        $child->user->update($validatedData);
+    
+        if ($validatedData['password']) {
+            $child->user->update(['password' => bcrypt($validatedData['password'])]);
+        }
+    
+        $child->update([
+            'forebear_id' => $validatedData['forebear_id'],
+            'age' => $validatedData['age'],
+            'education_stage' => $validatedData['education_stage'],
+        ]);
+    
+        return redirect()->route('children.index')->with('success', 'Child updated successfully');
     }
     
 
-
-    public function destroy( Child $child)
+    public function destroy(Child $child)
     {
-        
         $child->delete();
-    
         return redirect()->route('children.index')->with('success', 'Child deleted successfully');
     }
 }

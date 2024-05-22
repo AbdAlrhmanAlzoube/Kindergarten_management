@@ -4,7 +4,8 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h1 class="card-title">Add Review</h1>
+                <h1 class="card-title">Add Revi
+                    ew</h1>
                 <form method="POST" action="{{ route('teacher_review.store') }}">
                     @csrf
                     <div class="form-group">

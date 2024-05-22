@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserStoreRequest;
@@ -27,7 +28,6 @@ class UserController extends Controller
         $validatedData = $request->validated();
    
     
-        // Upload image if provided
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images/users', 'public');
             $validatedData['image'] = $imagePath;
@@ -47,13 +47,41 @@ class UserController extends Controller
         return view('Admin.users.show', compact('user'));
     }
 
-   
+    public function edit(User $user)
+    {
+        return view('Admin.users.edit', compact('user'));
+    }
+
+    public function update(UserUpdateRequest $request, User $user)
+    {
+        // Retrieve validated data from the request
+        $validatedData = $request->validated();
+    
+        // Adjust the email validation rule to ignore the current user's ID
+        $validatedData['email'] = $request->validate([
+            'email' => 'email|max:255|unique:users,email,' . $user->id,
+        ])['email'];
+    
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images/users', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+    
+        // Update user data
+        $user->update($validatedData);
+    
+        // Redirect to users index with success message
+        return redirect()->route('users.index')->with('success', 'User updated successfully');
+    }
+    
+
 
    
     public function destroy(User $user)
     {
         // Delete associated children
-        $user->children()->delete();
+        $user->child()->delete();
     
         // Now delete the user
         $user->delete();

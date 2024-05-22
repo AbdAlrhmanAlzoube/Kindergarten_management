@@ -28,7 +28,7 @@
               <th>Type</th>
               <th>Gender</th>
               <th>Image</th>
-              <th colspan="2" class="text-center">Options</th>
+              <th colspan="3" class="text-center">Options</th>
             </tr>
           </thead>
           <tbody>
@@ -50,17 +50,19 @@
                     <input type="submit" class="btn btn-danger btn-rounded btn-fw" value="Delete">
                   </form>
                 </td>
-               
                 <td>
                   <form action="{{ route('users.show', $user->id) }}" method="GET">
                     @csrf
                     <input type="submit" class="btn btn-secondary btn-rounded btn-fw" value="Show">
                   </form>
                 </td>
+                <td>
+                  <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-rounded btn-fw">Edit</a>
+                </td>
               </tr>
             @empty
               <tr>
-                <td colspan="10">No Users found</td>
+                <td colspan="11">No Users found</td>
               </tr>
             @endforelse
           </tbody>

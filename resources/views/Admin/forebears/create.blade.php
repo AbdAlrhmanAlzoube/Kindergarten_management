@@ -98,7 +98,7 @@
                         </div>
                         <div class="form-group">
                             <label for="age">Age</label>
-                            <input type="number" class="form-control @error('age') is-invalid @enderror" id="age" name="age" placeholder="Enter age">
+                            <input type="number" class="form-control @error('age') is-invalid @enderror" id="age" name="age" min="25"  max="100"  placeholder="Enter age">
                             @error('age')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

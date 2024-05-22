@@ -32,6 +32,8 @@ class ChildStoreRequest extends FormRequest
             'gender' => ['nullable', 'string', 'max:255'],
             'age' => ['required', 'integer','max:5'],
             'education_stage' => ['required', 'string', 'max:255'],
+           'forebear_id' => 'required|exists:forebears,id'
+
         ];
     }
 }

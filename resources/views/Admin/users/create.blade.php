@@ -10,6 +10,15 @@
                 <div class="card-body">
                     <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                         <input type="hidden" name="redirect_to_index" value="true">
                         <div class="form-group">
                             <label for="first_name">First Name</label>
@@ -19,18 +28,21 @@
                             <label for="last_name">Last Name</label>
                             <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter last name">
                         </div>
-                        <div class="form-group">
-                            <label for="last_name">Last Name</label>
-                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter last name">
-                        </div>
+                     
                         <div class="form-group">
                             <label for="address">Address</label>
                             <input type="text" class="form-control" id="address" name="address" placeholder="Enter address">
                         </div>
                         <div class="form-group">
-                            <label for="type">type</label>
-                            <input type="text" class="form-control" id="type" name="type" placeholder="Enter ype">
+                            <label for="type">Type</label>
+                            <select class="form-control" id="type" name="type">
+                                <option value="admin">ADMIN</option>
+                                <option value="child">CHILD</option>
+                                <option value="teacher">TEACHER</option>
+                                <option value="forebear">FOREBEAR</option>
+                            </select>
                         </div>
+                        
                         <div class="form-group">
                             <label for="phone">Phone</label>
                             <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone number">

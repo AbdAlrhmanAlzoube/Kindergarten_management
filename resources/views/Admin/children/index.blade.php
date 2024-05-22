@@ -33,6 +33,10 @@
                       <button type="submit" class="btn btn-danger btn-rounded btn-fw">Delete</button>
                     </form>
                   </td>
+                  <td>
+                    <a href="{{ route('children.edit', $child->id) }}" class="btn btn-warning btn-rounded btn-fw">Edit</a>
+                </td>
+                
                 </tr>
               @empty
                 <tr>

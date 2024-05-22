@@ -10,6 +10,15 @@
                     <div class="card-body">
                         <form action="{{ route('teachers.store') }}" method="POST">
                             @csrf
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                             <div class="form-group">
                                 <label for="first_name">First Name</label>
                                 <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter first name">
@@ -34,10 +43,7 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
                             </div>
-                            <div class="form-group">
-                                <label for="image">Image</label>
-                                <input type="file" class="form-control" id="image" name="image">
-                            </div>
+                          
                             <div class="form-group">
                                 <label for="gender">Gender</label>
                                 <select class="form-control" id="gender" name="gender">

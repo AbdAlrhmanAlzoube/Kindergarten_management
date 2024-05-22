@@ -11,6 +11,8 @@ class ForebearsController extends Controller
 {
     public function index()
     {
+
+
         $forebears = Forebear::all();
         return view('Admin.forebears.index', compact('forebears'));
     }

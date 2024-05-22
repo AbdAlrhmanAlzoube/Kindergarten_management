@@ -45,6 +45,28 @@
 
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
+            <a href="#" class="nav-link">
+                <p>
+                    Forebear
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('forebears.index') }}" class="nav-link">List Forebear</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('forebears.create') }}" class="nav-link">Add Forebear</a>
+                </li>
+            </ul>
+        </li>  
+    
+  
+    </ul>
+
+
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
           <a href="#" class="nav-link">
             <p>
               Child
@@ -81,27 +103,7 @@
      </ul>
 
 
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <p>
-                    Forebear
-                    <i class="fas fa-angle-left right"></i>
-                </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="{{ route('forebears.index') }}" class="nav-link">List Forebear</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('forebears.create') }}" class="nav-link">Add Forebear</a>
-                </li>
-            </ul>
-        </li>  
-    
-  
-    </ul>
-
+     
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <li class="nav-item">
           <a href="#" class="nav-link">
