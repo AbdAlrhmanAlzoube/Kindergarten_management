@@ -26,6 +26,7 @@
                                     <td>{{ $forebear->age }}</td>
                                     <td>
                                         <a href="{{ route('forebears.show', $forebear->id) }}" class="btn btn-primary btn-sm">Show</a>
+                                        <a href="{{ route('forebears.edit', $forebear->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                         <form action="{{ route('forebears.destroy', $forebear->id) }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')

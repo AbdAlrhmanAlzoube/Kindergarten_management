@@ -8,7 +8,7 @@
                     <div class="card-header">Edit Teacher</div>
 
                     <div class="card-body">
-                        <form action="{{ route('teachers.update', $teacher->id) }}" method="POST">
+                        <form action="{{ route('teachers.update', $teacher->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @if ($errors->any())
                             <div class="alert alert-danger">
@@ -18,7 +18,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif
+                            @endif
                             @method('PUT')
                             <div class="form-group">
                                 <label for="first_name">First Name</label>

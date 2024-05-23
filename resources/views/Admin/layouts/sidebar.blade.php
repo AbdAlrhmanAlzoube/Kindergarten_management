@@ -124,6 +124,28 @@
   </ul>
   
 
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <p>
+          Course
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{ route('courses.index') }}" class="nav-link">List Course</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('courses.create') }}" class="nav-link">Add Course</a>
+            </li>
+        </ul>
+    </li>
+
+    
+    
+  </li>
+
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
             <a href="#" class="nav-link">
@@ -152,27 +174,7 @@
 
 
 
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <p>
-              Course
-                    <i class="fas fa-angle-left right"></i>
-                </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="{{ route('courses.index') }}" class="nav-link">List Course</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('courses.create') }}" class="nav-link">Add Course</a>
-                </li>
-            </ul>
-        </li>
-  
-        
-        
-      </li>
+   
       
     
   

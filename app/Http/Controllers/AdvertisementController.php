@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Advertisement;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\AdvertisementStoreRequest;
 
 class AdvertisementController extends Controller
@@ -23,8 +24,10 @@ class AdvertisementController extends Controller
     {
         $validatedData = $request->validated();
     
-        $imagePath = $request->file('image')->store('advertisements');
-        $validatedData['image'] = $imagePath;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/advertisements');
+            $validatedData['image'] = str_replace('public/', '', $imagePath);
+        }
     
         Advertisement::create($validatedData);
     
@@ -55,8 +58,12 @@ class AdvertisementController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('advertisements');
-            $validatedData['image'] = $imagePath;
+            // Delete old image
+            Storage::delete('public/' . $advertisement->image);
+
+            // Store new image
+            $imagePath = $request->file('image')->store('public/advertisements');
+            $validatedData['image'] = str_replace('public/', '', $imagePath);
         }
 
         $advertisement->update($validatedData);
@@ -67,6 +74,9 @@ class AdvertisementController extends Controller
 
     public function destroy(Advertisement $advertisement)
     {
+        // Delete advertisement image
+        Storage::delete('public/' . $advertisement->image);
+
         $advertisement->delete();
         return redirect()->route('advertisements.index')
             ->with('success', 'Advertisement deleted successfully.');

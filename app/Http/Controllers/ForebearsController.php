@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ForebearStoreRequest;
-use App\Models\Forebear;
 use App\Models\User;
+use App\Models\Forebear;
 use Illuminate\Http\Request;
+use App\Http\Requests\ForebearStoreRequest;
+use App\Http\Requests\ForebearUpdateRequest;
 
 class ForebearsController extends Controller
 {
@@ -46,7 +47,32 @@ class ForebearsController extends Controller
         $forebears = Forebear::all();
         return view('Admin.forebears.index', compact('forebears'))->with('success', 'Forebear created successfully');
     }
-    
+    public function edit(Forebear $forebear)
+    {
+        return view('Admin.forebears.edit', compact('forebear'));
+    }
+
+    public function update(ForebearUpdateRequest $request, Forebear $forebear)
+    {
+        $validatedData = $request->validated();
+
+        $forebear->user->update($validatedData);
+
+        // Update age and image if provided
+        if ($request->has('age')) {
+            $forebear->age = $request->age;
+        }
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images/users', 'public');
+            $forebear->user->image = $imagePath;
+            $forebear->user->save();
+        }
+
+        $forebear->save();
+
+        return redirect()->route('forebears.index')->with('success', 'Forebear updated successfully');
+    }
 
     public function destroy(Forebear $forebear)
     {

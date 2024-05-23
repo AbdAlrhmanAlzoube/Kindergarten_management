@@ -26,36 +26,21 @@ class ReviewController extends Controller
     }
 
     public function store(Request $request)
-{
-    $validatedData = $request->validate([
-        'child_id' => 'required|exists:children,id',
-        'teacher_id' => 'required|exists:teachers,id',
-        'course_id' => 'required|exists:courses,id',
-        'level' => 'required',
-    ]);
+    {
+        $validatedData = $request->validate([
+            'child_id' => 'required|exists:children,id',
+            'teacher_id' => 'required|exists:teachers,id',
+            'course_id' => 'required|exists:courses,id',
+            'level' => 'required',
+        ]);
 
-    // Include 'child_id' when creating a new review
-    $reviewData = array_merge($validatedData, ['child_id' => $request->input('child_id')]);
+        // Include 'child_id' when creating a new review
+        $reviewData = array_merge($validatedData, ['child_id' => $request->input('child_id')]);
 
-    Review::create($reviewData);
+        Review::create($reviewData);
 
-    return redirect()->route('reviews.index')->with('success', 'Review added successfully.');
-}
-
-
-    // public function store(Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'child_id' => 'required|exists:children,id',
-    //         'teacher_id' => 'required|exists:teachers,id',
-    //         'course_id' => 'required|exists:courses,id',
-    //         'level' => 'required',
-    //     ]);
-
-    //     Review::create($validatedData);
-
-    //     return redirect()->route('reviews.index')->with('success', 'Review added successfully.');
-    // }
+        return redirect()->route('reviews.index')->with('success', 'Review added successfully.');
+    }
 
     public function show(Review $review)
     {
@@ -82,5 +67,12 @@ class ReviewController extends Controller
         $review->update($validatedData);
 
         return redirect()->route('reviews.index')->with('success', 'Review updated successfully.');
+    }
+
+    public function destroy(Review $review)
+    {
+        $review->delete();
+
+        return redirect()->route('reviews.index')->with('success', 'Review deleted successfully.');
     }
 }
