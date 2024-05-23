@@ -53,8 +53,10 @@ class AddChildController extends Controller
     public function edit($id)
     {
         // Fetch the child by ID
+        $users=User::all();
+        $forebears=Forebear::all();
         $child = Child::findOrFail($id);
-        return view('Dashboard.Forebear.pages.edit', compact('child'));
+        return view('Dashboard.Forebear.pages.edit', compact('child','users','forebears'));
     }
     public function update(Request $request, $id) // Include the ID parameter
     {
