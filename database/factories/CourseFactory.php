@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
 use App\Models\Teacher;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class CourseFactory extends Factory
 {
+
+    protected $model = Course::class;
     /**
      * Define the model's default state.
      *
@@ -19,7 +22,7 @@ class CourseFactory extends Factory
     {
         return [
             'teacher_id' => Teacher::factory(),  
-            'name' => $this->faker->word,
+            'type' => $this->faker->word,
             'description' => $this->faker->paragraph(),
         ];
     }

@@ -3,14 +3,17 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use App\Traits\Filterable;
+
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable , Filterable;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +32,29 @@ class User extends Authenticatable
         'password',
         'type'
     ];
+
+    // public function scopeFilter(Builder $builder,$filters)
+    // {
+
+    //     $builder->when($filters['first_name']?? false,function($builder,$value)
+    //     {
+    //         $builder->where('first_name','like',"%{$value}%");
+    //     });
+    //     $builder->when($filters['type']?? false,function($builder,$value)
+    //     {
+    //         $builder->where('type','=',$value);
+    //     });
+        
+        
+    //    if($filters['first_name'] ?? false)
+    //    {
+    //     $builder->where('first_name','like',"%{$filters['first_name']}%");
+    //    }
+    //    if($filters['type'] ?? false)
+    //    {
+    //     $builder->where('type','=',$filters['type']);
+    //    }
+    //}
 
     
     public function child()

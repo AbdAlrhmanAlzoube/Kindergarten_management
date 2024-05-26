@@ -13,6 +13,6 @@ class ForebearsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Forebear::factory()->count(10)->create();
+        Forebear::factory()->count(20)->create();
     }
 }

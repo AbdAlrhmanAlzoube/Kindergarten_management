@@ -12,8 +12,12 @@ class UserController extends Controller
    
     public function index()
     {
-        $users = User::all(); 
+        $request=request();
+        
+        $users = User::filter($request->only(['first_name','type']))
+        ->orderBy('first_name','DESC')->paginate(5); //LATEST
         return view('Admin.users.index', compact('users')); 
+        
     }
 
     

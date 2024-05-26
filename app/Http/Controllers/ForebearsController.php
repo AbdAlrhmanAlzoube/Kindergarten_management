@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Forebear;
-use Illuminate\Http\Request;
 use App\Http\Requests\ForebearStoreRequest;
 use App\Http\Requests\ForebearUpdateRequest;
 
@@ -12,9 +11,7 @@ class ForebearsController extends Controller
 {
     public function index()
     {
-
-
-        $forebears = Forebear::all();
+        $forebears = Forebear::paginate(5);
         return view('Admin.forebears.index', compact('forebears'));
     }
 
@@ -44,9 +41,10 @@ class ForebearsController extends Controller
             'age' => $validatedData['age'],
         ]);
     
-        $forebears = Forebear::all();
+        $forebears = Forebear::paginate(5); // Use paginate instead of all
         return view('Admin.forebears.index', compact('forebears'))->with('success', 'Forebear created successfully');
     }
+    
     public function edit(Forebear $forebear)
     {
         return view('Admin.forebears.edit', compact('forebear'));

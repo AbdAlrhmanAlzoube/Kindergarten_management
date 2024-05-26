@@ -13,7 +13,7 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        $teachers = Teacher::all();
+        $teachers = Teacher::paginate(5);
         return view('admin.teachers.index', compact('teachers'));
     }
 

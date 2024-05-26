@@ -7,13 +7,14 @@ use App\Models\Child;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class AddChildController extends Controller
 {
     public function index()
     {
         // Fetch all children with their related data
-        $children = Child::with(['user', 'forebear.user'])->get();
+        $children = Child::with(['user', 'forebear.user'])->paginate(6);
         return view('Dashboard.Forebear.pages.index', compact('children'));
     }
 
@@ -43,6 +44,12 @@ class AddChildController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images/users', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+
         // Create the new child
         $child = Child::create($validatedData);
 
@@ -53,12 +60,13 @@ class AddChildController extends Controller
     public function edit($id)
     {
         // Fetch the child by ID
-        $users=User::all();
-        $forebears=Forebear::all();
+        $users = User::all();
+        $forebears = Forebear::all();
         $child = Child::findOrFail($id);
-        return view('Dashboard.Forebear.pages.edit', compact('child','users','forebears'));
+        return view('Dashboard.Forebear.pages.edit', compact('child', 'users', 'forebears'));
     }
-    public function update(Request $request, $id) // Include the ID parameter
+
+    public function update(Request $request, $id)
     {
         // Validate the incoming request
         $validatedData = $request->validate([
@@ -68,25 +76,42 @@ class AddChildController extends Controller
             'education_stage' => 'required|string|max:255', // Education stage must be a string
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image validations
         ]);
-    
+
         // Fetch the existing child by ID
         $child = Child::findOrFail($id); // Ensure the child exists
         
+        // Handle image update
+        if ($request->hasFile('image')) {
+            // Delete previous image if exists
+            if ($child->user->image) {
+                Storage::disk('public')->delete($child->user->image);
+            }
+            // Upload new image
+            $imagePath = $request->file('image')->store('images/users', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+
         // Update the child with the validated data
         $child->update($validatedData);
-    
+
         return redirect()->route('forebear_child.show', ['forebear_child' => $child->id])
                          ->with('success', 'Child updated successfully.');
     }
-    
 
     public function destroy($id)
     {
         // Find and delete the child
         $child = Child::findOrFail($id);
+
+        // Delete child's image if exists
+        if ($child->user->image) {
+            Storage::disk('public')->delete($child->user->image);
+        }
+
         $child->delete();
 
         return redirect()->route('forebear_child.index')
                          ->with('success', 'Child deleted successfully.');
     }
 }
+

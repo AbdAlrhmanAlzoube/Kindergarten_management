@@ -30,7 +30,7 @@ class UserStoreRequest extends FormRequest
             'password' => ['required', 'string', 'min:8', 'max:255'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'gender' => ['nullable', 'string', 'max:255'],
-            'type' => ['nullable', 'string', 'max:255'],
+            'type' => ['required','nullable', 'string', 'max:255'],
 
         ];
     }

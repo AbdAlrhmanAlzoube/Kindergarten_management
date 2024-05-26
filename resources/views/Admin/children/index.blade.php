@@ -1,11 +1,13 @@
-  @extends('Admin.admin_dashboard')
+@extends('Admin.admin_dashboard')
 
-  @section('content')
-  <div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Children Table</h4>
-        <div class="table-responsive pt-3">
+@section('content')
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Children Table</h4>
+      <div class="table-responsive pt-3">
+        <!-- Scrollable table container -->
+        <div style="max-height: 400px; overflow-y: auto;">
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
@@ -24,29 +26,31 @@
                   <td>{{ $child->age }}</td>
                   <td>{{ $child->education_stage }}</td>
                   <td>
-                    <a href="{{ route('children.show', [ $child->id]) }}" class="btn btn-secondary btn-rounded btn-fw">Show</a>
+                    <a href="{{ route('children.show', [ $child->id]) }}" class="btn btn-success btn-rounded btn-fw btn-sm">Show</a>
                   </td>
                   <td>
-                    <form action="{{ route('children.destroy', [ $child->id]) }}" method="POST">
+                    <form action="{{ route('children.destroy', [ $child->id]) }}" method="POST" style="display: inline-block;">
                       @csrf
                       @method('delete')
-                      <button type="submit" class="btn btn-danger btn-rounded btn-fw">Delete</button>
+                      <button type="submit" class="btn btn-danger btn-rounded btn-fw btn-sm" onclick="return confirm('Are you sure you want to delete this child?')">Delete</button>
                     </form>
                   </td>
                   <td>
-                    <a href="{{ route('children.edit', $child->id) }}" class="btn btn-warning btn-rounded btn-fw">Edit</a>
-                </td>
-                
+                    <a href="{{ route('children.edit', $child->id) }}" class="btn btn-warning btn-rounded btn-fw btn-sm">Edit</a>
+                  </td>
                 </tr>
               @empty
                 <tr>
-                  <td colspan="5">No Children found</td>
+                  <td colspan="7">No Children found</td>
                 </tr>
               @endforelse
             </tbody>
           </table>
         </div>
+        <!-- End of scrollable table container -->
       </div>
     </div>
   </div>
-  @endsection
+</div>
+{{ $children->links() }}
+@endsection

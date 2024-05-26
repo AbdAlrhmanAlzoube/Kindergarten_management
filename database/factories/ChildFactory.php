@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Forebear;
 use App\Models\User;
 use App\Models\Child;
 use App\Enum\EducationStage;
@@ -20,7 +21,8 @@ class ChildFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => User::factory(),
+            'forebear_id' => Forebear::factory(),
             'age' => $this->faker->numberBetween(3,5),
             'education_stage'=>$this->faker->randomElement([EducationStage::KG1,EducationStage::KG2,EducationStage::KG3]),
         ];

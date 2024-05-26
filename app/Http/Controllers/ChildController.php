@@ -13,7 +13,7 @@ class ChildController extends Controller
 {
     public function index()
     {
-        $children = Child::all();
+        $children = Child::paginate(10);
         return view('Admin.children.index', compact('children'));
     }
 

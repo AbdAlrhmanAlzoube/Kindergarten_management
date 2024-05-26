@@ -3,40 +3,27 @@
 @section('forebear_content')
 <div class="container">
     <h1>Edit Child</h1>
+    
     <form action="{{ route('forebear_child.update', ['forebear_child' => $child->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-
-        <!-- User -->
+        
+        <!-- User Selection -->
         <div class="form-group">
             <label for="user_id">User</label>
             <select name="user_id" id="user_id" class="form-control" required>
-                @foreach ($users as $user)
-                <option value="{{ $user->id }}" {{ $child->user_id == $user->id ? 'selected' : '' }}>
-                    {{ $user->first_name }}  {{ $user->list_name }}
-                </option>
+                @foreach($users as $user)
+                    <option value="{{ $user->id }}" @if($user->id == $child->user_id) selected @endif>{{ $user->first_name }} {{ $user->last_name }}</option>
                 @endforeach
             </select>
         </div>
 
-        <!-- Forebear -->
+        <!-- Forebear Selection -->
         <div class="form-group">
             <label for="forebear_id">Forebear</label>
             <select name="forebear_id" id="forebear_id" class="form-control" required>
-                @foreach ($forebears as $forebear)
-                <option value="{{ $forebear->id }}" {{ $child->forebear_id == $forebear->id ? 'selected' : '' }}>
-                    {{ $forebear->user->first_name }}   {{ $forebear->user->list_name }}
-                </option>
+                @foreach($forebears as $forebear)
+                    <option value="{{ $forebear->id }}" @if($forebear->id == $child->forebear_id) selected @endif>{{ $forebear->user->first_name }} {{ $forebear->user->last_name }}</option>
                 @endforeach
             </select>
         </div>
@@ -44,30 +31,35 @@
         <!-- Age -->
         <div class="form-group">
             <label for="age">Age</label>
-            <input type="number" name="age" id="age" class="form-control" value="{{ $child->age }}" min="0" required>
+            <input type="number" name="age" id="age" class="form-control" value="{{ $child->age }}" min="3" max="5" required>
         </div>
 
         <!-- Education Stage -->
         <div class="form-group">
             <label for="education_stage">Education Stage</label>
             <select name="education_stage" id="education_stage" class="form-control" required>
-                <option value="kg1" {{ $child->education_stage == 'kg1' ? 'selected' : '' }}>KG1</option>
-                <option value="kg2" {{ $child->education_stage == 'kg2' ? 'selected' : '' }}>KG2</option>
-                <option value="kg3" {{ $child->education_stage == 'kg3' ? 'selected' : '' }}>KG3</option>
-                {{-- Add more options if needed --}}
+                <option value="kg1" @if($child->education_stage == 'kg1') selected @endif>KG1</option>
+                <option value="kg2" @if($child->education_stage == 'kg2') selected @endif>KG2</option>
+                <option value="kg3" @if($child->education_stage == 'kg3') selected @endif>KG3</option>
             </select>
         </div>
+        
+        <!-- Current Image -->
+        @if($child->user->image)
+        <div class="form-group">
+            <label>Current Image:</label><br>
+            <img src="{{ asset('storage/' . $child->user->image) }}" alt="Current Image" class="img-thumbnail" width="150">
+        </div>
+        @endif
 
         <!-- Image Upload -->
         <div class="form-group">
-            <label for="image">Change Profile Image (Optional)</label>
-            <input type="file" name="image" id="image" class="form-control">
+            <label for="image">Profile Image (Optional)</label>
+            <input type="file" name="image" id="image" class="form-control-file">
         </div>
 
-        <!-- Submit Button -->
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Update Child</button>
-        </div>
+        <button type="submit" class="btn btn-primary">Update Child</button>
+        <a href="{{ route('forebear_child.index') }}" class="btn btn-secondary">Back to List</a>
     </form>
 </div>
 @endsection

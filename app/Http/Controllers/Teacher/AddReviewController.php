@@ -14,14 +14,14 @@ class AddReviewController extends Controller
 {
     public function index()
     {
-        $reviews = Review::all();
+        $reviews = Review::with('child.user', 'teacher.user', 'course')->paginate(7);
         return view('Dashboard.Teacher.pages.index', compact('reviews'));
     }
 
     public function create()
     {
-        $children = Child::all();
-        $teachers = Teacher::all();
+        $children = Child::with('user')->get();
+        $teachers = Teacher::with('user')->get();
         $courses = Course::all();
         return view('Dashboard.Teacher.pages.create', compact('children', 'teachers', 'courses'));
     }
@@ -46,18 +46,20 @@ class AddReviewController extends Controller
 
     public function show($id)
     {
-        $review = Review::findOrFail($id);
+        $review = Review::with('child.user', 'teacher.user', 'course')->findOrFail($id);
 
         return view('Dashboard.Teacher.pages.show', compact('review'));
     }
 
-    public function edit(Review $review)
-    {
-        $children = Child::all();
-        $teachers = Teacher::all();
-        $courses = Course::all();
-        return view('Dashboard.Teacher.pages.edit', compact('review', 'children', 'teachers', 'courses'));
-    }
+    public function edit($id)
+{
+    $review = Review::findOrFail($id);
+    $children = Child::with('user')->get();
+    $teachers = Teacher::with('user')->get();
+    $courses = Course::all();
+    return view('Dashboard.Teacher.pages.edit', compact('review', 'children', 'teachers', 'courses'));
+}
+
 
     public function update(Request $request, Review $review)
     {

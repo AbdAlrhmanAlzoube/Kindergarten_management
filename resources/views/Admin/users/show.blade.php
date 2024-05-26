@@ -1,30 +1,25 @@
-@extends('Admin.admin_dashboard')
+@extends('Dashboard.Forebear.dashboard')
 
-@section('content')
+@section('forebear_content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    {{ $user->first_name }} {{ $user->last_name }}
-                </div>
+    <h1>Child Details</h1>
 
-                <div class="card-body">
-                    <ul class="list-group">
-                        <li class="list-group-item"><strong>ID:</strong> {{ $user->id }}</li>
-                        <li class="list-group-item"><strong>First Name:</strong> {{ $user->first_name }}</li>
-                        <li class="list-group-item"><strong>Last Name:</strong> {{ $user->last_name }}</li>
-                        <li class="list-group-item"><strong>Address:</strong> {{ $user->address }}</li>
-                        <li class="list-group-item"><strong>Phone:</strong> {{ $user->phone }}</li>
-                        <li class="list-group-item"><strong>Email:</strong> {{ $user->email }}</li>
-                        <li class="list-group-item"><strong>Type:</strong> {{ $user->type }}</li>
-                        <li class="list-group-item"><strong>Gender:</strong> {{ $user->gender }}</li>
-                        <li class="list-group-item"><strong>Image:</strong> <img src="{{ asset('storage/'.$user->image) }}" alt="{{ $user->first_name }} {{ $user->last_name }}" width="100px" height="100px"></li>
-                        <!-- Add more details as needed -->
-                    </ul>
-                </div>
-            </div>
+    <!-- Child Information -->
+    <div class="card">
+        <div class="card-body">
+            <h3>{{ $child->user->first_name }} {{ $child->user->last_name }}</h3>
+
+            @if($child->user->image)
+                <img src="{{ asset('storage/' . $child->user->image) }}" alt="Profile Image" class="img-thumbnail" width="150">
+            @endif
+
+            <p><strong>Age:</strong> {{ $child->age }}</p>
+            <p><strong>Education Stage:</strong> {{ $child->education_stage }}</p>
+            <p><strong>Forebear:</strong> {{ $child->forebear->user->first_name }} {{ $child->forebear->user->last_name }}</p>
         </div>
     </div>
+
+    <!-- Back Button -->
+    <a href="{{ route('forebear_child.index') }}" class="btn btn-secondary mt-3">Back to List</a>
 </div>
 @endsection

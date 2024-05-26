@@ -28,7 +28,7 @@
         </div>
 
         <!-- Age -->
-        <div class=form-group">
+        <div class="form-group">
             <label for="age">Age</label>
             <input type="number" name="age" id="age" class="form-control" min="3" max="5" required>
         </div>
@@ -40,18 +40,13 @@
                 <option value="kg1">KG1</option>
                 <option value="kg2">KG2</option>
                 <option value="kg3">KG3</option>
-                {{-- <option value="primary">Primary</option>
-                <option value="middle">Middle</option>
-                <option value="high">High</option> --}}
             </select>
         </div>
         
-        
-
         <!-- Image Upload -->
         <div class="form-group">
             <label for="image">Profile Image (Optional)</label>
-            <input type="file" name="image" id="image" class="form-control">
+            <input type="file" name="image" id="image" class="form-control-file">
         </div>
 
         <button type="submit" class="btn btn-primary">Create Child</button>
