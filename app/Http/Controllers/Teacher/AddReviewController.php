@@ -8,7 +8,6 @@ use App\Models\Review;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 
 class AddReviewController extends Controller
 {
@@ -47,22 +46,22 @@ class AddReviewController extends Controller
     public function show($id)
     {
         $review = Review::with('child.user', 'teacher.user', 'course')->findOrFail($id);
-
         return view('Dashboard.Teacher.pages.show', compact('review'));
     }
 
     public function edit($id)
-{
-    $review = Review::findOrFail($id);
-    $children = Child::with('user')->get();
-    $teachers = Teacher::with('user')->get();
-    $courses = Course::all();
-    return view('Dashboard.Teacher.pages.edit', compact('review', 'children', 'teachers', 'courses'));
-}
-
-
-    public function update(Request $request, Review $review)
     {
+        $review = Review::findOrFail($id);
+        $children = Child::with('user')->get();
+        $teachers = Teacher::with('user')->get();
+        $courses = Course::all();
+        return view('Dashboard.Teacher.pages.edit', compact('review', 'children', 'teachers', 'courses'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $review = Review::findOrFail($id);
+        
         $validatedData = $request->validate([
             'child_id' => 'required|exists:children,id',
             'teacher_id' => 'required|exists:teachers,id',

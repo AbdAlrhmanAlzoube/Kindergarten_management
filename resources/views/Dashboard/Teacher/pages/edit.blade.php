@@ -4,10 +4,9 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h1 class="card-title">Edit Review</h1>
+            <h1 class="card-title">Edit Review</h1><br>
             <form method="POST" action="{{ route('teacher_review.update', ['teacher_review' => $review->id]) }}">
                 @csrf
-                @method('PUT')
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -16,7 +15,9 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+                @endif
+                @method('PUT')
+             
                 <div class="form-group">
                     <label for="child_id">Child:</label>
                     <select class="form-control" id="child_id" name="child_id">
@@ -46,13 +47,13 @@
                     <select class="form-control" id="course_id" name="course_id">
                         <option value="">Select Course</option>
                         @foreach($courses as $course)
-                            <option value="{{ $course->id }}" {{ $course->id == $review->course_id ? 'selected' : '' }}>{{ $course->type }}</option>
+                            <option value="{{ $course->id }}">{{ $course->type }}</option>
                         @endforeach
                     </select>
                     @error('course_id')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                </div>
+                </div>  
                 <div class="form-group">
                     <label for="level">Level:</label>
                     <input type="text" class="form-control" id="level" name="level" value="{{ $review->level }}">

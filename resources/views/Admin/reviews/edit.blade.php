@@ -36,7 +36,7 @@
                         <select class="form-control" id="course_id" name="course_id">
                             <option value="">Select Course</option>
                             @foreach($courses as $course)
-                                <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                <option value="{{ $course->id }}">{{ $course->type }}</option>
                             @endforeach
                         </select>
                         @error('course_id')
